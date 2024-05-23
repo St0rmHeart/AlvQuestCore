@@ -51,8 +51,6 @@
         /// <summary>
         /// Установка объекта. Вызывается во время создания арены перед началом сражения.
         /// </summary>
-        /// <param name="owner"></param>
-        /// <param name="enemy"></param>
         public abstract void Installation(LinksDTO linksDTO);
 
         /// <summary>

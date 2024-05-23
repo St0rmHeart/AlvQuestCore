@@ -101,27 +101,35 @@ namespace AlvQuestCore
         {
             foreach (Equipment item in _equipment.Values)
             {
-                linksDTO.CurrentEquipment = item;
                 item.Installation(linksDTO);
             }
 
             foreach (Perk perk in _perks)
             {
-                linksDTO.CurrentPerk = perk;
                 perk.Installation(linksDTO);
             }
 
             foreach (Spell spell in _spells)
             {
-                linksDTO.CurrentSpell = spell;
                 spell.Installation(linksDTO);
             }
-
-            //throw new NotImplementedException();
         }
         public override void Uninstallation()
         {
-            throw new NotImplementedException();
+            foreach (Equipment item in _equipment.Values)
+            {
+                item.Uninstallation();
+            }
+
+            foreach (Perk perk in _perks)
+            {
+                perk.Uninstallation();
+            }
+
+            foreach (Spell spell in _spells)
+            {
+                spell.Uninstallation();
+            }
         }
         public override Character Clone()
         {

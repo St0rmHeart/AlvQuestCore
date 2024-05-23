@@ -152,6 +152,7 @@ namespace AlvQuestCore
         /// <br /><see cref="double"/> <c>value</c> - величина изменения.
         /// </summary>
         public event EventHandler<(EManaType ManaType, double Value)> DeltaMP;
+
         #endregion 
 
         #region EVENT INVOKE - методы вызова событий.
@@ -907,6 +908,41 @@ namespace AlvQuestCore
         {
             InvokeTurnExecution();
         }
+
+        /// <summary>
+        /// Установка объекта. Вызывается во время создания арены перед началом сражения.
+        /// </summary>
+        /// <param name="linksDTO"></param>
+        public void Installation(LinksDTO linksDTO)
+        {
+            Character.Installation(linksDTO);
+        }
+
+        /// <summary>
+        /// Деинсталляция объекта. Вызывается после завершения сражения.
+        /// </summary>
+        public void Uninstallation()
+        {
+            Character.Uninstallation();
+
+            DeltaGold = null;
+            DeltaHP = null;
+            DeltaMP = null;
+            DeltaXP = null;
+            DamageAccepting = null;
+            DamageTaking = null;
+            DamageBlocking = null;
+            DamageBlocking = null;
+            Death = null;
+            TurnExecution = null;
+            ActionExecution = null;
+            StoneSwap = null;
+            StoneCombining = null;
+            StoneAbsorption = null;
+            StoneDestruction = null;
+            SpellCasting = null;
+        }
+
         #endregion
     }
 }

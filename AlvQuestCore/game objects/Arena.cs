@@ -111,6 +111,9 @@
             
         }
         
+        /// <summary>
+        /// Устанавливает необходимые связи для снаряжения, заклинаний и перков обоих персонажей арены
+        /// </summary>
         public void Installation()
         {
             //проброска ссылок между всеми объектами
@@ -133,9 +136,18 @@
                 //установка ссылки на оппонента
                 pointer1.CurrentOpponent = pointer2;
                 //инициализация всех эффектов в снаряжении персонажа
-                pointer1.Character.Installation(linksDTO);
+                pointer1.Installation(linksDTO);
             }
 
+        }
+
+        /// <summary>
+        /// Удаляет связи установленные для персонажей арены
+        /// </summary>
+        public void Uninstallation()
+        {
+            _player.Uninstallation();
+            _enemy.Uninstallation();
         }
 
         #endregion

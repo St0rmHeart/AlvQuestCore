@@ -245,6 +245,11 @@
 
         public override void Installation(LinksDTO linksDTO)
         {
+            base.Installation(linksDTO);
+        }
+
+        public override void ConcreteInstallation(LinksDTO linksDTO)
+        {
             _isActive = false;
 
             CharacterSlot owner = linksDTO.PlayerCharacterSlot;
