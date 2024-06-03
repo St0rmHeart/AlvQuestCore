@@ -16,7 +16,7 @@
         /// <summary>
         /// Ссылки на текущую арену и на слоты ее игроков
         /// </summary>
-        protected LinksDTO LinksDTO;
+        protected LinksDTO LinksDTO { get; set; }
 
         public override void Installation(LinksDTO linksDTO)
         {

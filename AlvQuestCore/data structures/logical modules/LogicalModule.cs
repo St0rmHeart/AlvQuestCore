@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace AlvQuestCore
+﻿namespace AlvQuestCore
 {
     //абстрактный предок всех логических модулей
     public abstract class LogicalModule
@@ -47,9 +45,6 @@ namespace AlvQuestCore
         public abstract LogicalModule_DTO GetDTO();
     }
 
-    [JsonDerivedType(typeof(LM_CONSTANT_TRUE_DTO), typeDiscriminator: "CONSTANT_TRUE")]
-    [JsonDerivedType(typeof(LM_01_deltaThreshold_DTO), typeDiscriminator: "deltaThreshold")]
-    [JsonDerivedType(typeof(LM_02_damageThreshold_DTO), typeDiscriminator: "damageThreshold")]
     public abstract class LogicalModule_DTO
     {
         public abstract LogicalModule RecreateLogicalModule();

@@ -32,7 +32,7 @@ namespace AlvQuestCore
         /// <summary>
         /// Базовые значения характеристик.
         /// </summary>
-        public Dictionary<ECharacteristic, int> Characteristics { get; } = new()
+        public Dictionary<ECharacteristic, int> Characteristics { get; private set; } = new()
         {
             {ECharacteristic.Strength, 0},
             {ECharacteristic.Endurance, 0},
@@ -56,18 +56,18 @@ namespace AlvQuestCore
         /// <summary>
         /// Используемые перки.
         /// </summary>
-        public List<Perk> Perks { get; } = new();
+        public List<Perk> Perks { get; private set; } = new();
 
         /// <summary>
         /// Используемое снаряжение.
         /// </summary>
-        public Dictionary<EBodyPart, Equipment> Equipments { get; } = new();
+        public Dictionary<EBodyPart, Equipment> Equipments { get; private set; } = new();
 
         /// <summary>
         /// Итератор по снаряжению персонажа. 
         /// </summary>
         /// <param name="bodyPart"> <see cref='EBodyPart'/> слот снаряжения </param>
-        /// <returns><see cref='AlvQuestCore.Equipment'/> объект снаряжения, экиперованный в указанном слоте или <see cref='null'/>, если слот пуст </returns>
+        /// <returns><see cref='Equipment'/> объект снаряжения, экиперованный в указанном слоте или <see cref='null'/>, если слот пуст </returns>
         public Equipment this[EBodyPart bodyPart]
         {
             //возвращает предмет саряжения, либо null если в указанной ячейке ничего не одето
@@ -87,7 +87,7 @@ namespace AlvQuestCore
         /// <summary>
         /// Используемые заклинания.
         /// </summary>
-        public List<Spell> Spells = new();
+        public List<Spell> Spells { get; private set; } = new();
 
         /// <summary>
         /// Базовый конструктор персонажа.
@@ -145,7 +145,7 @@ namespace AlvQuestCore
                 CharPoints = CharPoints,
                 Characteristics = new Dictionary<ECharacteristic, int>(Characteristics),
                 Perks = Perks.Select(perk => perk.Clone()).ToList(),
-                Equipment = Equipments.ToDictionary(kv => kv.Key, kv => kv.Value.Clone()),
+                Equipments = Equipments.ToDictionary(kv => kv.Key, kv => kv.Value.Clone()),
                 Spells = Spells.Select(spell => spell.Clone()).ToList()
             };
 

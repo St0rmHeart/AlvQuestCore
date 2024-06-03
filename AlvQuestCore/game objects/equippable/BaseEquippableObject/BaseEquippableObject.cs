@@ -23,7 +23,7 @@
         /// <param name="icon"> Иконка объекта</param>
         /// <param name="effects"> Список эффектов, реализующий данный объект </param>
         /// <param name="requirementsForUse"> Минимальные значения характеристик, которыми должен обладать персонаж для экиперовки объекта </param>
-        protected BaseEquippableObject(
+        public BaseEquippableObject(
             string name,
             string description,
             string icon,

@@ -60,7 +60,7 @@
                     CharPoints = CharPoints,
                     Characteristics = new Dictionary<ECharacteristic, int>(Characteristics),
                     Perks = Perks.Select(perkDTO => perkDTO.RecreateOriginal()).ToList(),
-                    Equipment = Equipment.ToDictionary(kv => kv.Key, kv => kv.Value.RecreateOriginal()),
+                    Equipments = Equipment.ToDictionary(kv => kv.Key, kv => kv.Value.RecreateOriginal()),
                     Spells = Spells.Select(spellDTO => spellDTO.RecreateOriginal()).ToList()
                 };
                 return character;
