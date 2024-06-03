@@ -58,10 +58,10 @@
                     Xp = Xp,
                     Gold = Gold,
                     CharPoints = CharPoints,
-                    _characteristics = new Dictionary<ECharacteristic, int>(Characteristics),
-                    _perks = Perks.Select(perkDTO => perkDTO.RecreateOriginal()).ToList(),
-                    _equipment = Equipment.ToDictionary(kv => kv.Key, kv => kv.Value.RecreateOriginal()),
-                    _spells = Spells.Select(spellDTO => spellDTO.RecreateOriginal()).ToList()
+                    Characteristics = new Dictionary<ECharacteristic, int>(Characteristics),
+                    Perks = Perks.Select(perkDTO => perkDTO.RecreateOriginal()).ToList(),
+                    Equipment = Equipment.ToDictionary(kv => kv.Key, kv => kv.Value.RecreateOriginal()),
+                    Spells = Spells.Select(spellDTO => spellDTO.RecreateOriginal()).ToList()
                 };
                 return character;
             }

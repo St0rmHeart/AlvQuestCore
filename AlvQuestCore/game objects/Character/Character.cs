@@ -32,7 +32,7 @@ namespace AlvQuestCore
         /// <summary>
         /// Базовые значения характеристик.
         /// </summary>
-        private Dictionary<ECharacteristic, int> _characteristics = new()
+        public Dictionary<ECharacteristic, int> Characteristics { get; } = new()
         {
             {ECharacteristic.Strength, 0},
             {ECharacteristic.Endurance, 0},
@@ -50,30 +50,30 @@ namespace AlvQuestCore
         /// <returns> <see cref='int'/> значение указанной характеристики. </returns>
         public int this[ECharacteristic characteristic]
         {
-            get { return _characteristics[characteristic]; }
+            get { return Characteristics[characteristic]; }
         }
 
         /// <summary>
         /// Используемые перки.
         /// </summary>
-        private List<Perk> _perks = new();
+        public List<Perk> Perks { get; } = new();
 
         /// <summary>
         /// Используемое снаряжение.
         /// </summary>
-        private Dictionary<EBodyPart, Equipment> _equipment = new();
+        public Dictionary<EBodyPart, Equipment> Equipments { get; } = new();
 
         /// <summary>
         /// Итератор по снаряжению персонажа. 
         /// </summary>
         /// <param name="bodyPart"> <see cref='EBodyPart'/> слот снаряжения </param>
-        /// <returns><see cref='Equipment'/> объект снаряжения, экиперованный в указанном слоте или <see cref='null'/>, если слот пуст </returns>
+        /// <returns><see cref='AlvQuestCore.Equipment'/> объект снаряжения, экиперованный в указанном слоте или <see cref='null'/>, если слот пуст </returns>
         public Equipment this[EBodyPart bodyPart]
         {
             //возвращает предмет саряжения, либо null если в указанной ячейке ничего не одето
             get
             {
-                if (_equipment.TryGetValue(bodyPart, out Equipment value))
+                if (Equipments.TryGetValue(bodyPart, out Equipment value))
                 {
                     return value;
                 }
@@ -87,7 +87,7 @@ namespace AlvQuestCore
         /// <summary>
         /// Используемые заклинания.
         /// </summary>
-        private List<Spell> _spells = new();
+        public List<Spell> Spells = new();
 
         /// <summary>
         /// Базовый конструктор персонажа.
@@ -99,34 +99,34 @@ namespace AlvQuestCore
 
         public override void Installation(LinksDTO linksDTO)
         {
-            foreach (Equipment item in _equipment.Values)
+            foreach (Equipment item in Equipments.Values)
             {
                 item.Installation(linksDTO);
             }
 
-            foreach (Perk perk in _perks)
+            foreach (Perk perk in Perks)
             {
                 perk.Installation(linksDTO);
             }
 
-            foreach (Spell spell in _spells)
+            foreach (Spell spell in Spells)
             {
                 spell.Installation(linksDTO);
             }
         }
         public override void Uninstallation()
         {
-            foreach (Equipment item in _equipment.Values)
+            foreach (Equipment item in Equipments.Values)
             {
                 item.Uninstallation();
             }
 
-            foreach (Perk perk in _perks)
+            foreach (Perk perk in Perks)
             {
                 perk.Uninstallation();
             }
 
-            foreach (Spell spell in _spells)
+            foreach (Spell spell in Spells)
             {
                 spell.Uninstallation();
             }
@@ -143,10 +143,10 @@ namespace AlvQuestCore
                 Xp = Xp,
                 Gold = Gold,
                 CharPoints = CharPoints,
-                _characteristics = new Dictionary<ECharacteristic, int>(_characteristics),
-                _perks = _perks.Select(perk => perk.Clone()).ToList(),
-                _equipment = _equipment.ToDictionary(kv => kv.Key, kv => kv.Value.Clone()),
-                _spells = _spells.Select(spell => spell.Clone()).ToList()
+                Characteristics = new Dictionary<ECharacteristic, int>(Characteristics),
+                Perks = Perks.Select(perk => perk.Clone()).ToList(),
+                Equipment = Equipments.ToDictionary(kv => kv.Key, kv => kv.Value.Clone()),
+                Spells = Spells.Select(spell => spell.Clone()).ToList()
             };
 
             return character;
@@ -160,10 +160,10 @@ namespace AlvQuestCore
                 Xp = Xp,
                 Gold = Gold,
                 CharPoints = CharPoints,
-                Characteristics = _characteristics,
-                Perks = _perks.Select(perk => perk.GetDTO()).ToList(),
-                Equipment = _equipment.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.GetDTO()),
-                Spells = _spells.Select(spell => spell.GetDTO()).ToList()
+                Characteristics = Characteristics,
+                Perks = Perks.Select(perk => perk.GetDTO()).ToList(),
+                Equipment = Equipments.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.GetDTO()),
+                Spells = Spells.Select(spell => spell.GetDTO()).ToList()
             };
             return characterDTO;
         }
